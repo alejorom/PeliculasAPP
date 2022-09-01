@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PeliculasAPI.Data;
+using PeliculasAPI.Repository.IRepository;
+using PeliculasAPI.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +18,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
         builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
 
 var app = builder.Build();
 
