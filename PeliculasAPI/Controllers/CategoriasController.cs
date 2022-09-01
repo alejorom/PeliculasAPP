@@ -96,5 +96,24 @@ namespace PeliculasAPI.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete("{categoriaId:int}", Name = "BorrarCategoria")]
+        public IActionResult BorrarCategoria(int categoriaId)
+        {
+            if (!_categoriaRepo.ExisteCategoria(categoriaId))
+            {
+                return NotFound();
+            }
+
+            var categoria = _categoriaRepo.GetCategoria(categoriaId);
+
+            if (!_categoriaRepo.BorrarCategoria(categoria))
+            {
+                ModelState.AddModelError("", $"Algo salio mal borrando el registro {categoria.Nombre}");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
     }
 }
