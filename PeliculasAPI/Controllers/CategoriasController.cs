@@ -77,5 +77,24 @@ namespace PeliculasAPI.Controllers
 
             return CreatedAtRoute("GetCategoria", new { categoriaId = categoria.Id }, categoria);
         }
+
+        [HttpPatch("{categoriaId:int}", Name = "ActualizarCategoria")]
+        public IActionResult ActualizarCategoria(int categoriaId, [FromBody] CategoriaDTO categoriaDTO)
+        {
+            if (categoriaDTO == null || categoriaId != categoriaDTO.Id)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var categoria = _mapper.Map<Categoria>(categoriaDTO);
+
+            if (!_categoriaRepo.ActualizarCategoria(categoria))
+            {
+                ModelState.AddModelError("", $"Algo salio mal actualizando el registro {categoria.Nombre}");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
     }
 }
