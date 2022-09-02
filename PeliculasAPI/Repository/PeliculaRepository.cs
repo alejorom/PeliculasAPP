@@ -71,7 +71,7 @@ namespace PeliculasAPI.Repository
         /// <returns></returns>
         public bool ExistePelicula(string nombre)
         {
-            bool valor = _bd.Categoria.Any(c => c.Nombre.ToLower().Trim() == nombre.ToLower().Trim());
+            bool valor = _bd.Pelicula.Any(c => c.Nombre.ToLower().Trim() == nombre.ToLower().Trim());
             return valor;
         }
 
