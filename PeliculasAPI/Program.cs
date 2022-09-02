@@ -20,6 +20,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 });
 
 builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
+builder.Services.AddScoped<IPeliculaRepository, PeliculaRepository>();
 builder.Services.AddAutoMapper(typeof(Mappers));
 
 var app = builder.Build();
