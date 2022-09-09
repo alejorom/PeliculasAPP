@@ -1,8 +1,11 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using PeliculasAPI.Data;
 using PeliculasAPI.Mappers;
 using PeliculasAPI.Repository;
 using PeliculasAPI.Repository.IRepository;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +26,19 @@ builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
 builder.Services.AddScoped<IPeliculaRepository, PeliculaRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddAutoMapper(typeof(Mappers));
+
+/*Agregar dependencia del token*/
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value)),
+            ValidateIssuer = false,
+            ValidateAudience = false
+        };
+    });
 
 var app = builder.Build();
 
