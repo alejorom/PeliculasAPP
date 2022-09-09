@@ -4,6 +4,18 @@
         <name>PeliculasAPI</name>
     </assembly>
     <members>
+        <member name="T:PeliculasAPI.Controllers.CategoriasController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PeliculasAPI.Controllers.CategoriasController.#ctor(PeliculasAPI.Repository.IRepository.ICategoriaRepository,AutoMapper.IMapper)">
+            <summary>
+            
+            </summary>
+            <param name="categoriaRepo"></param>
+            <param name="mapper"></param>
+        </member>
         <member name="M:PeliculasAPI.Controllers.CategoriasController.GetCategorias">
             <summary>
             Obtener todas las categorías de películas.
@@ -39,6 +51,80 @@
             <param name="categoriaId">ID de la categoría</param>
             <returns></returns>
         </member>
+        <member name="T:PeliculasAPI.Controllers.PeliculasController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PeliculasAPI.Controllers.PeliculasController.#ctor(PeliculasAPI.Repository.IRepository.IPeliculaRepository,AutoMapper.IMapper)">
+            <summary>
+            
+            </summary>
+            <param name="peliculaRepo"></param>
+            <param name="mapper"></param>
+        </member>
+        <member name="M:PeliculasAPI.Controllers.PeliculasController.GetPeliculas">
+            <summary>
+            Obtener todas las películas
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PeliculasAPI.Controllers.PeliculasController.GetPelicula(System.Int32)">
+            <summary>
+            Obtener una película individual
+            </summary>
+            <param name="peliculaId">ID de la película</param>
+            <returns></returns>
+        </member>
+        <member name="M:PeliculasAPI.Controllers.PeliculasController.GetPeliculasEnCategoria(System.Int32)">
+            <summary>
+            Obtener las películas de una categoría
+            </summary>
+            <param name="categoriaId">ID de la categoría</param>
+            <returns></returns>
+        </member>
+        <member name="M:PeliculasAPI.Controllers.PeliculasController.Buscar(System.String)">
+            <summary>
+            Buscar películas por nombre
+            </summary>
+            <param name="nombre"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PeliculasAPI.Controllers.PeliculasController.CrearPelicula(PeliculasAPI.Models.DTOS.PeliculaCreateDTO)">
+            <summary>
+            Crear una nueva película
+            </summary>
+            <param name="peliculaDTO"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PeliculasAPI.Controllers.PeliculasController.ActualizarPelicula(System.Int32,PeliculasAPI.Models.DTOS.PeliculaUpdateDTO)">
+            <summary>
+            Actualizar una película existente
+            </summary>
+            <param name="peliculaId">ID de la película</param>
+            <param name="peliculaDTO"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PeliculasAPI.Controllers.PeliculasController.BorrarPelicula(System.Int32)">
+            <summary>
+            Eliminar una película existente
+            </summary>
+            <param name="peliculaId">ID de la película</param>
+            <returns></returns>
+        </member>
+        <member name="T:PeliculasAPI.Controllers.UsuariosController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PeliculasAPI.Controllers.UsuariosController.#ctor(PeliculasAPI.Repository.IRepository.IUsuarioRepository,AutoMapper.IMapper,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="usuarioRepo"></param>
+            <param name="mapper"></param>
+            <param name="config"></param>
+        </member>
         <member name="M:PeliculasAPI.Controllers.UsuariosController.GetUsuarios">
             <summary>
             Obtener todos los usuarios
@@ -69,6 +155,11 @@
             
             </summary>
             <param name="options"></param>
+        </member>
+        <member name="T:PeliculasAPI.Repository.CategoriaRepository">
+            <summary>
+            
+            </summary>
         </member>
         <member name="M:PeliculasAPI.Repository.CategoriaRepository.#ctor(PeliculasAPI.Data.ApplicationDbContext)">
             <summary>
@@ -136,6 +227,17 @@
             Almacenar los cambios de la categoría
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:PeliculasAPI.Repository.PeliculaRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PeliculasAPI.Repository.PeliculaRepository.#ctor(PeliculasAPI.Data.ApplicationDbContext)">
+            <summary>
+            
+            </summary>
+            <param name="bd"></param>
         </member>
         <member name="M:PeliculasAPI.Repository.PeliculaRepository.ActualizarPelicula(PeliculasAPI.Models.Pelicula)">
             <summary>
@@ -207,6 +309,76 @@
             Almacenar los cambias de la pelíula
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:PeliculasAPI.Repository.UsuarioRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PeliculasAPI.Repository.UsuarioRepository.#ctor(PeliculasAPI.Data.ApplicationDbContext)">
+            <summary>
+            
+            </summary>
+            <param name="bd"></param>
+        </member>
+        <member name="M:PeliculasAPI.Repository.UsuarioRepository.ExisteUsuario(System.String)">
+            <summary>
+            Existe usuario
+            </summary>
+            <param name="usuario"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PeliculasAPI.Repository.UsuarioRepository.GetUsuario(System.Int32)">
+            <summary>
+            Obtener usuario individual
+            </summary>
+            <param name="UsuarioId">ID del usuario</param>
+            <returns></returns>
+        </member>
+        <member name="M:PeliculasAPI.Repository.UsuarioRepository.GetUsuarios">
+            <summary>
+            Obtener todos los usuarios
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PeliculasAPI.Repository.UsuarioRepository.Guardar">
+            <summary>
+            Almacenar cambios
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PeliculasAPI.Repository.UsuarioRepository.Login(System.String,System.String)">
+            <summary>
+            Realizar login del usuario
+            </summary>
+            <param name="usuario"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PeliculasAPI.Repository.UsuarioRepository.Registro(PeliculasAPI.Models.Usuario,System.String)">
+            <summary>
+            Crear nuevo usuario
+            </summary>
+            <param name="usuario"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PeliculasAPI.Repository.UsuarioRepository.VerificaPasswordHash(System.String,System.Byte[],System.Byte[])">
+            <summary>
+            Verificar password hash
+            </summary>
+            <param name="password"></param>
+            <param name="passwordHash"></param>
+            <param name="passwordSalt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PeliculasAPI.Repository.UsuarioRepository.CrearPasswordHash(System.String,System.Byte[]@,System.Byte[]@)">
+            <summary>
+            Crear password hast
+            </summary>
+            <param name="password"></param>
+            <param name="passwordHash"></param>
+            <param name="passwordSalt"></param>
         </member>
     </members>
 </doc>

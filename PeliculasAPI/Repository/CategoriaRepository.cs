@@ -4,6 +4,9 @@ using PeliculasAPI.Repository.IRepository;
 
 namespace PeliculasAPI.Repository
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class CategoriaRepository : ICategoriaRepository
     {
         private readonly ApplicationDbContext _bd;

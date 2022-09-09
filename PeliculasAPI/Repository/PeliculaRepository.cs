@@ -5,10 +5,16 @@ using PeliculasAPI.Repository.IRepository;
 
 namespace PeliculasAPI.Repository
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class PeliculaRepository : IPeliculaRepository
     {
         private readonly ApplicationDbContext _bd;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bd"></param>
         public PeliculaRepository(ApplicationDbContext bd)
         {
             _bd = bd;
