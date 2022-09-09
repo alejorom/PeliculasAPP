@@ -1,0 +1,212 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PeliculasAPI</name>
+    </assembly>
+    <members>
+        <member name="M:PeliculasAPI.Controllers.CategoriasController.GetCategorias">
+            <summary>
+            Obtener todas las categorías de películas.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PeliculasAPI.Controllers.CategoriasController.GetCategoria(System.Int32)">
+            <summary>
+            Obtener una categoría de película.
+            </summary>
+            <param name="categoriaId">ID de la categoría</param>
+            <returns></returns>
+        </member>
+        <member name="M:PeliculasAPI.Controllers.CategoriasController.CrearCategoria(PeliculasAPI.Models.DTOS.CategoriaDTO)">
+            <summary>
+            Crear una nueva categoría
+            </summary>
+            <param name="categoriaDTO"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PeliculasAPI.Controllers.CategoriasController.ActualizarCategoria(System.Int32,PeliculasAPI.Models.DTOS.CategoriaDTO)">
+            <summary>
+            Actualiza una categoría existente
+            </summary>
+            <param name="categoriaId"></param>
+            <param name="categoriaDTO"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PeliculasAPI.Controllers.CategoriasController.BorrarCategoria(System.Int32)">
+            <summary>
+            Elimina una categoría existente
+            </summary>
+            <param name="categoriaId">ID de la categoría</param>
+            <returns></returns>
+        </member>
+        <member name="M:PeliculasAPI.Controllers.UsuariosController.GetUsuarios">
+            <summary>
+            Obtener todos los usuarios
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PeliculasAPI.Controllers.UsuariosController.GetUsuario(System.Int32)">
+            <summary>
+            Obtener un usuario individual
+            </summary>
+            <param name="usuarioId"> Este es el id de la usuario</param>
+            <returns></returns>
+        </member>
+        <member name="M:PeliculasAPI.Controllers.UsuariosController.Registro(PeliculasAPI.Models.DTOS.UsuarioAuthDTO)">
+            <summary>
+            Registro de nuevo usuario
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PeliculasAPI.Controllers.UsuariosController.Login(PeliculasAPI.Models.DTOS.UsuarioAuthLoginDTO)">
+            <summary>
+            Acceso/Autenticación de usuario
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PeliculasAPI.Data.ApplicationDbContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{PeliculasAPI.Data.ApplicationDbContext})">
+            <summary>
+            
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="M:PeliculasAPI.Repository.CategoriaRepository.#ctor(PeliculasAPI.Data.ApplicationDbContext)">
+            <summary>
+            
+            </summary>
+            <param name="bd"></param>
+        </member>
+        <member name="M:PeliculasAPI.Repository.CategoriaRepository.ActualizarCategoria(PeliculasAPI.Models.Categoria)">
+            <summary>
+            Actualizar categoria de películas
+            </summary>
+            <param name="categoria"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:PeliculasAPI.Repository.CategoriaRepository.BorrarCategoria(PeliculasAPI.Models.Categoria)">
+            <summary>
+            Remover una categoría de películas
+            </summary>
+            <param name="categoria"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:PeliculasAPI.Repository.CategoriaRepository.CrearCategoria(PeliculasAPI.Models.Categoria)">
+            <summary>
+            Adicionar una nueva categoría de pelícuas
+            </summary>
+            <param name="categoria"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:PeliculasAPI.Repository.CategoriaRepository.ExisteCategoria(System.String)">
+            <summary>
+            Verificar si existe categoria por nombre
+            </summary>
+            <param name="nombre"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:PeliculasAPI.Repository.CategoriaRepository.ExisteCategoria(System.Int32)">
+            <summary>
+            Verificar si existe categoria por id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:PeliculasAPI.Repository.CategoriaRepository.GetCategoria(System.Int32)">
+            <summary>
+            Obtener una categoría
+            </summary>
+            <param name="CategoriaId"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:PeliculasAPI.Repository.CategoriaRepository.GetCategorias">
+            <summary>
+            Obtener todas las categorías 
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:PeliculasAPI.Repository.CategoriaRepository.Guardar">
+            <summary>
+            Almacenar los cambios de la categoría
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PeliculasAPI.Repository.PeliculaRepository.ActualizarPelicula(PeliculasAPI.Models.Pelicula)">
+            <summary>
+            Actualizar pelicula
+            </summary>
+            <param name="pelicula"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PeliculasAPI.Repository.PeliculaRepository.BorrarPelicula(PeliculasAPI.Models.Pelicula)">
+            <summary>
+            Remover una película
+            </summary>
+            <param name="pelicula"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PeliculasAPI.Repository.PeliculaRepository.BuscarPelicula(System.String)">
+            <summary>
+            Buscar pelicula por nombre
+            </summary>
+            <param name="nombre"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PeliculasAPI.Repository.PeliculaRepository.CrearPelicula(PeliculasAPI.Models.Pelicula)">
+            <summary>
+            Adicionar una nueva película
+            </summary>
+            <param name="pelicula"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PeliculasAPI.Repository.PeliculaRepository.ExistePelicula(System.String)">
+            <summary>
+            Verificar si existe película por nombre
+            </summary>
+            <param name="nombre"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PeliculasAPI.Repository.PeliculaRepository.ExistePelicula(System.Int32)">
+            <summary>
+            Verificar si existe película por id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:PeliculasAPI.Repository.PeliculaRepository.GetPelicula(System.Int32)">
+            <summary>
+            Obtener una pelica por id
+            </summary>
+            <param name="PeliculaId"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:PeliculasAPI.Repository.PeliculaRepository.GetPeliculas">
+            <summary>
+            Obtener todas las peliculas
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:PeliculasAPI.Repository.PeliculaRepository.GetPeliculasEnCategoria(System.Int32)">
+            <summary>
+            Obtener películas por categoria
+            </summary>
+            <param name="CategoriaId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PeliculasAPI.Repository.PeliculaRepository.Guardar">
+            <summary>
+            Almacenar los cambias de la pelíula
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
