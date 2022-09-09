@@ -7,6 +7,9 @@ using PeliculasAPI.Repository.IRepository;
 
 namespace PeliculasAPI.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class CategoriasController : ControllerBase
@@ -14,6 +17,11 @@ namespace PeliculasAPI.Controllers
         private readonly ICategoriaRepository _categoriaRepo;
         private readonly IMapper _mapper;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="categoriaRepo"></param>
+        /// <param name="mapper"></param>
         public CategoriasController(ICategoriaRepository categoriaRepo, IMapper mapper)
         {
             _categoriaRepo = categoriaRepo;
@@ -35,9 +43,9 @@ namespace PeliculasAPI.Controllers
         }
 
         /// <summary>
-        /// Obtener una categoria de película.
+        /// Obtener una categoría de película.
         /// </summary>
-        /// <param name="categoriaId"></param>
+        /// <param name="categoriaId">ID de la categoría</param>
         /// <returns></returns>
         [HttpGet("{categoriaId:int}", Name = "GetCategoria")]
         public IActionResult GetCategoria(int categoriaId)
@@ -53,6 +61,11 @@ namespace PeliculasAPI.Controllers
             return Ok(itemCategoriaDto);
         }
 
+        /// <summary>
+        /// Crear una nueva categoría
+        /// </summary>
+        /// <param name="categoriaDTO"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult CrearCategoria([FromBody] CategoriaDTO categoriaDTO)
         {
@@ -78,6 +91,12 @@ namespace PeliculasAPI.Controllers
             return CreatedAtRoute("GetCategoria", new { categoriaId = categoria.Id }, categoria);
         }
 
+        /// <summary>
+        /// Actualiza una categoría existente
+        /// </summary>
+        /// <param name="categoriaId"></param>
+        /// <param name="categoriaDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{categoriaId:int}", Name = "ActualizarCategoria")]
         public IActionResult ActualizarCategoria(int categoriaId, [FromBody] CategoriaDTO categoriaDTO)
         {
@@ -97,6 +116,11 @@ namespace PeliculasAPI.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Elimina una categoría existente
+        /// </summary>
+        /// <param name="categoriaId">ID de la categoría</param>
+        /// <returns></returns>
         [HttpDelete("{categoriaId:int}", Name = "BorrarCategoria")]
         public IActionResult BorrarCategoria(int categoriaId)
         {

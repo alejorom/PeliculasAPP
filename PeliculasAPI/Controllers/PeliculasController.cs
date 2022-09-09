@@ -7,6 +7,9 @@ using PeliculasAPI.Repository.IRepository;
 
 namespace PeliculasAPI.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class PeliculasController : ControllerBase
@@ -14,12 +17,21 @@ namespace PeliculasAPI.Controllers
         private readonly IPeliculaRepository _peliculaRepo;
         private readonly IMapper _mapper;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="peliculaRepo"></param>
+        /// <param name="mapper"></param>
         public PeliculasController(IPeliculaRepository peliculaRepo, IMapper mapper)
         {
             _peliculaRepo = peliculaRepo;
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Obtener todas las películas
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult GetPeliculas()
         {
@@ -30,6 +42,11 @@ namespace PeliculasAPI.Controllers
             return Ok(listaPeliculasDTO);
         }
 
+        /// <summary>
+        /// Obtener una película individual
+        /// </summary>
+        /// <param name="peliculaId">ID de la película</param>
+        /// <returns></returns>
         [HttpGet("{peliculaId:int}", Name = "GetPelicula")]
         public IActionResult GetPelicula(int peliculaId)
         {
@@ -44,6 +61,11 @@ namespace PeliculasAPI.Controllers
             return Ok(itemPeliculaDto);
         }
 
+        /// <summary>
+        /// Obtener las películas de una categoría
+        /// </summary>
+        /// <param name="categoriaId">ID de la categoría</param>
+        /// <returns></returns>
         [HttpGet("GetPeliculasEnCategoria/{categoriaId:int}")]
         public IActionResult GetPeliculasEnCategoria(int categoriaId)
         {
@@ -54,6 +76,11 @@ namespace PeliculasAPI.Controllers
             return Ok(listaPeliculasDTO);
         }
 
+        /// <summary>
+        /// Buscar películas por nombre
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <returns></returns>
         [HttpGet("Buscar")]
         public IActionResult Buscar(string nombre)
         {
@@ -73,6 +100,11 @@ namespace PeliculasAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Crear una nueva película
+        /// </summary>
+        /// <param name="peliculaDTO"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult CrearPelicula([FromBody] PeliculaCreateDTO peliculaDTO)
         {
@@ -98,6 +130,12 @@ namespace PeliculasAPI.Controllers
             return CreatedAtRoute("GetPelicula", new { peliculaId = pelicula.Id }, pelicula);
         }
 
+        /// <summary>
+        /// Actualizar una película existente
+        /// </summary>
+        /// <param name="peliculaId">ID de la película</param>
+        /// <param name="peliculaDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{peliculaId:int}", Name = "ActualizarPelicula")]
         public IActionResult ActualizarPelicula(int peliculaId, [FromBody] PeliculaUpdateDTO peliculaDTO)
         {
@@ -117,6 +155,11 @@ namespace PeliculasAPI.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Eliminar una película existente
+        /// </summary>
+        /// <param name="peliculaId">ID de la película</param>
+        /// <returns></returns>
         [HttpDelete("{peliculaId:int}", Name = "BorrarPelicula")]
         public IActionResult BorrarPelicula(int peliculaId)
         {

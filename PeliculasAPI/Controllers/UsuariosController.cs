@@ -11,6 +11,9 @@ using System.Text;
 
 namespace PeliculasAPI.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class UsuariosController : ControllerBase
@@ -19,6 +22,12 @@ namespace PeliculasAPI.Controllers
         private readonly IMapper _mapper;
         private readonly IConfiguration _config;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="usuarioRepo"></param>
+        /// <param name="mapper"></param>
+        /// <param name="config"></param>
         public UsuariosController(IUsuarioRepository usuarioRepo, IMapper mapper, IConfiguration config)
         {
             _usuarioRepo = usuarioRepo;
