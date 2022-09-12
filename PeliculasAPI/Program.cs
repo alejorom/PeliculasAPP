@@ -43,10 +43,58 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddSwaggerGen(options =>
 {
-    options.SwaggerDoc("PeliculasAPI", new Microsoft.OpenApi.Models.OpenApiInfo()
+    options.SwaggerDoc("PeliculasAPICategorias", new Microsoft.OpenApi.Models.OpenApiInfo()
+    {
+        Title = "API Categorías",
+        Version = "1",
+        Description = "Backend películas",
+        Contact = new Microsoft.OpenApi.Models.OpenApiContact()
+        {
+            Email = "study@just4learn.com",
+            Name = "J4L",
+            Url = new Uri("https://just4learn.com")
+        },
+        License = new Microsoft.OpenApi.Models.OpenApiLicense()
+        {
+            Name = "MIT License",
+            Url = new Uri("https://en.wikipedia.org/wiki/MIT_License")
+        }
+    });
+
+    options.SwaggerDoc("PeliculasAPIPeliculas", new Microsoft.OpenApi.Models.OpenApiInfo()
     {
         Title = "API Películas",
-        Version = "1"
+        Version = "1",
+        Description = "Backend películas",
+        Contact = new Microsoft.OpenApi.Models.OpenApiContact()
+        {
+            Email = "study@just4learn.com",
+            Name = "J4L",
+            Url = new Uri("https://just4learn.com")
+        },
+        License = new Microsoft.OpenApi.Models.OpenApiLicense()
+        {
+            Name = "MIT License",
+            Url = new Uri("https://en.wikipedia.org/wiki/MIT_License")
+        }
+    });
+
+    options.SwaggerDoc("PeliculasAPIUsuarios", new Microsoft.OpenApi.Models.OpenApiInfo()
+    {
+        Title = "API Usuarios ",
+        Version = "1",
+        Description = "Backend películas",
+        Contact = new Microsoft.OpenApi.Models.OpenApiContact()
+        {
+            Email = "study@just4learn.com",
+            Name = "J4L",
+            Url = new Uri("https://just4learn.com")
+        },
+        License = new Microsoft.OpenApi.Models.OpenApiLicense()
+        {
+            Name = "MIT License",
+            Url = new Uri("https://en.wikipedia.org/wiki/MIT_License")
+        }
     });
 
     var archivoXmlComentarios = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -63,7 +111,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(
         options =>
         {
-            options.SwaggerEndpoint("/swagger/PeliculasAPI/swagger.json", "API Películas");
+            options.SwaggerEndpoint("/swagger/PeliculasAPICategorias/swagger.json", "API Categorías ");
+            options.SwaggerEndpoint("/swagger/PeliculasAPIPeliculas/swagger.json", "API Películas");
+            options.SwaggerEndpoint("/swagger/PeliculasAPIUsuarios/swagger.json", "API Usuarios");
             options.RoutePrefix = "";
         });
 }

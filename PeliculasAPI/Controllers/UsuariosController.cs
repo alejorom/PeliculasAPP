@@ -16,6 +16,8 @@ namespace PeliculasAPI.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
+    [ApiExplorerSettings(GroupName = "PeliculasAPIUsuarios")]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public class UsuariosController : ControllerBase
     {
         private readonly IUsuarioRepository _usuarioRepo;
@@ -40,6 +42,8 @@ namespace PeliculasAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [ProducesResponseType(200, Type = typeof(List<UsuarioDTO>))]
+        [ProducesResponseType(400)]
         public IActionResult GetUsuarios()
         {
             var listaUsuarios = _usuarioRepo.GetUsuarios();
@@ -55,6 +59,8 @@ namespace PeliculasAPI.Controllers
         /// <param name="usuarioId"> Este es el id de la usuario</param>
         /// <returns></returns>
         [HttpGet("{usuarioId:int}", Name = "GetUsuario")]
+        [ProducesResponseType(200, Type = typeof(UsuarioDTO))]
+        [ProducesResponseType(404)]
         public IActionResult GetUsuario(int usuarioId)
         {
             var itemUsuario = _usuarioRepo.GetUsuario(usuarioId);
@@ -73,6 +79,10 @@ namespace PeliculasAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
+        [ProducesResponseType(201, Type = typeof(UsuarioAuthDTO))]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Registro(UsuarioAuthDTO usuarioAuthDTO)
         {
             usuarioAuthDTO.Usuario = usuarioAuthDTO.Usuario.ToLower();
@@ -97,6 +107,9 @@ namespace PeliculasAPI.Controllers
         /// <returns></returns>
         [AllowAnonymous]
         [HttpPost("Login")]
+        [ProducesResponseType(201, Type = typeof(UsuarioAuthDTO))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Login(UsuarioAuthLoginDTO usuarioAuthLoginDTO)
         {
             var usuarioDesdeRepo = _usuarioRepo.Login(usuarioAuthLoginDTO.Usuario, usuarioAuthLoginDTO.Password);

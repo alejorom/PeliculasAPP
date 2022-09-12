@@ -12,6 +12,8 @@ namespace PeliculasAPI.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
+    [ApiExplorerSettings(GroupName = "PeliculasAPIPeliculas")]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public class PeliculasController : ControllerBase
     {
         private readonly IPeliculaRepository _peliculaRepo;
@@ -33,6 +35,8 @@ namespace PeliculasAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [ProducesResponseType(200, Type = typeof(List<PeliculaDTO>))]
+        [ProducesResponseType(400)]
         public IActionResult GetPeliculas()
         {
             var listaPeliculas = _peliculaRepo.GetPeliculas();
@@ -48,6 +52,8 @@ namespace PeliculasAPI.Controllers
         /// <param name="peliculaId">ID de la película</param>
         /// <returns></returns>
         [HttpGet("{peliculaId:int}", Name = "GetPelicula")]
+        [ProducesResponseType(200, Type = typeof(PeliculaDTO))]
+        [ProducesResponseType(404)]
         public IActionResult GetPelicula(int peliculaId)
         {
             var itemPelicula = _peliculaRepo.GetPelicula(peliculaId);
@@ -67,6 +73,8 @@ namespace PeliculasAPI.Controllers
         /// <param name="categoriaId">ID de la categoría</param>
         /// <returns></returns>
         [HttpGet("GetPeliculasEnCategoria/{categoriaId:int}")]
+        [ProducesResponseType(200, Type = typeof(List<PeliculaDTO>))]
+        [ProducesResponseType(404)]
         public IActionResult GetPeliculasEnCategoria(int categoriaId)
         {
             var listaPeliculas = _peliculaRepo.GetPeliculasEnCategoria(categoriaId);
@@ -82,6 +90,8 @@ namespace PeliculasAPI.Controllers
         /// <param name="nombre"></param>
         /// <returns></returns>
         [HttpGet("Buscar")]
+        [ProducesResponseType(200, Type = typeof(PeliculaDTO))]
+        [ProducesResponseType(404)]
         public IActionResult Buscar(string nombre)
         {
             try
@@ -106,6 +116,10 @@ namespace PeliculasAPI.Controllers
         /// <param name="peliculaDTO"></param>
         /// <returns></returns>
         [HttpPost]
+        [ProducesResponseType(201, Type = typeof(PeliculaDTO))]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult CrearPelicula([FromBody] PeliculaCreateDTO peliculaDTO)
         {
             if (peliculaDTO == null)
@@ -137,6 +151,9 @@ namespace PeliculasAPI.Controllers
         /// <param name="peliculaDTO"></param>
         /// <returns></returns>
         [HttpPatch("{peliculaId:int}", Name = "ActualizarPelicula")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult ActualizarPelicula(int peliculaId, [FromBody] PeliculaUpdateDTO peliculaDTO)
         {
             if (peliculaDTO == null || peliculaId != peliculaDTO.Id)
@@ -161,6 +178,10 @@ namespace PeliculasAPI.Controllers
         /// <param name="peliculaId">ID de la película</param>
         /// <returns></returns>
         [HttpDelete("{peliculaId:int}", Name = "BorrarPelicula")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult BorrarPelicula(int peliculaId)
         {
             if (!_peliculaRepo.ExistePelicula(peliculaId))
