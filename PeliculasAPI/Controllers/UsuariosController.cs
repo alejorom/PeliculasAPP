@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -14,6 +15,7 @@ namespace PeliculasAPI.Controllers
     /// <summary>
     /// 
     /// </summary>
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     [ApiController]
     [ApiExplorerSettings(GroupName = "PeliculasAPIUsuarios")]
@@ -78,6 +80,7 @@ namespace PeliculasAPI.Controllers
         /// Registro de nuevo usuario
         /// </summary>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpPost]
         [ProducesResponseType(201, Type = typeof(UsuarioAuthDTO))]
         [ProducesResponseType(StatusCodes.Status201Created)]

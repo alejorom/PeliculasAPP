@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PeliculasAPI.Models;
@@ -10,6 +12,7 @@ namespace PeliculasAPI.Controllers
     /// <summary>
     /// 
     /// </summary>
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     [ApiController]
     [ApiExplorerSettings(GroupName = "PeliculasAPICategorias")]
@@ -34,6 +37,7 @@ namespace PeliculasAPI.Controllers
         /// Obtener todas las categorías de películas.
         /// </summary>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(List<CategoriaDTO>))]
         [ProducesResponseType(400)]
@@ -51,6 +55,7 @@ namespace PeliculasAPI.Controllers
         /// </summary>
         /// <param name="categoriaId">ID de la categoría</param>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpGet("{categoriaId:int}", Name = "GetCategoria")]
         [ProducesResponseType(200, Type = typeof(CategoriaDTO))]
         [ProducesResponseType(404)]

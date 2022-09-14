@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using PeliculasAPI.Data;
 using PeliculasAPI.Mappers;
 using PeliculasAPI.Repository;
@@ -35,7 +36,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value)),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value)),
             ValidateIssuer = false,
             ValidateAudience = false
         };
@@ -100,6 +101,28 @@ builder.Services.AddSwaggerGen(options =>
     var archivoXmlComentarios = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var rutaApiComentarios = Path.Combine(AppContext.BaseDirectory, archivoXmlComentarios);
     options.IncludeXmlComments(rutaApiComentarios);
+
+    //Primero definir el esquema de seguridad
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = "Autenticación JWT (Bearer)",
+        Type = SecuritySchemeType.Http,
+        Scheme = "bearer"
+    });
+
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement{
+    {
+        new OpenApiSecurityScheme
+        {
+            Reference = new OpenApiReference
+            {
+                Id = "Bearer",
+                Type = ReferenceType.SecurityScheme
+            }
+        }, new List<string>()
+    }
+    });
+
 });
 
 var app = builder.Build();
@@ -123,6 +146,7 @@ app.UseHttpsRedirection();
 /* Habilitar CORS para el API */
 app.UseCors();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
