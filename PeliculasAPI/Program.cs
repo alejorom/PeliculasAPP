@@ -120,6 +120,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+/* Habilitar CORS para el API */
+app.UseCors();
+
 app.UseAuthorization();
 
 app.MapControllers();
