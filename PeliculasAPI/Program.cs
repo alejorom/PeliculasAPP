@@ -1,11 +1,14 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using PeliculasAPI.Data;
+using PeliculasAPI.Helpers;
 using PeliculasAPI.Mappers;
 using PeliculasAPI.Repository;
 using PeliculasAPI.Repository.IRepository;
+using System.Net;
 using System.Reflection;
 using System.Text;
 
@@ -130,16 +133,32 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(
-        options =>
-        {
-            options.SwaggerEndpoint("/swagger/PeliculasAPICategorias/swagger.json", "API Categorías ");
-            options.SwaggerEndpoint("/swagger/PeliculasAPIPeliculas/swagger.json", "API Películas");
-            options.SwaggerEndpoint("/swagger/PeliculasAPIUsuarios/swagger.json", "API Usuarios");
-            options.RoutePrefix = "";
-        });
+    app.UseDeveloperExceptionPage();
 }
+else
+{
+    app.UseExceptionHandler(builder => {
+        builder.Run(async context => {
+            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            var error = context.Features.Get<IExceptionHandlerFeature>();
+
+            if (error != null)
+            {
+                context.Response.AddApplicationError(error.Error.Message);
+                await context.Response.WriteAsync(error.Error.Message);
+            }
+        });
+    });
+}
+
+app.UseSwagger();
+app.UseSwaggerUI(options =>
+{
+    options.SwaggerEndpoint("/swagger/PeliculasAPICategorias/swagger.json", "API Categorías ");
+    options.SwaggerEndpoint("/swagger/PeliculasAPIPeliculas/swagger.json", "API Películas");
+    options.SwaggerEndpoint("/swagger/PeliculasAPIUsuarios/swagger.json", "API Usuarios");
+    options.RoutePrefix = "";
+});
 
 app.UseHttpsRedirection();
 
