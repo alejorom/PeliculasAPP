@@ -163,7 +163,7 @@ app.UseSwaggerUI(options =>
 app.UseHttpsRedirection();
 
 /* Habilitar CORS para el API */
-app.UseCors();
+app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 app.UseAuthentication();
 app.UseAuthorization();

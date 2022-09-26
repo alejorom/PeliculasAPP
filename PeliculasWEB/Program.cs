@@ -18,6 +18,13 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+// Permitir CORS en la WEB
+app.UseCors(x => x
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    );
+
 app.UseAuthorization();
 
 app.MapControllerRoute(
