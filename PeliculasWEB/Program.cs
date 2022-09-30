@@ -1,3 +1,6 @@
+using PeliculasWEB.Repository;
+using PeliculasWEB.Repository.IRepository;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,6 +8,11 @@ builder.Services.AddControllersWithViews();
 
 // Permitir llamados HTTP
 builder.Services.AddHttpClient();
+
+// Agregar los repositorios 
+builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
+builder.Services.AddScoped<IPeliculaRepository, PeliculaRepository>();
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
 var app = builder.Build();
 
