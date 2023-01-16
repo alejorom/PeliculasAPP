@@ -95,7 +95,7 @@ namespace PeliculasWEB.Repository
         /// <param name="nombre"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public async Task<IEnumerable?> Buscar(string url, string nombre)
+        public async Task<IEnumerable?> BuscarAsync(string url, string nombre)
         {
             var peticion = new HttpRequestMessage(HttpMethod.Get, url + nombre);
 
