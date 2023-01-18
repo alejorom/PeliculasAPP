@@ -218,10 +218,8 @@ namespace PeliculasWEB.Repository
         /// <returns></returns>
         public async Task<IEnumerable?> GetTodoAsync(string url)
         {
-            var peticion = new HttpRequestMessage(HttpMethod.Get, url);
-
+            HttpRequestMessage peticion = new HttpRequestMessage(HttpMethod.Get, url);
             var cliente = _clientFactory.CreateClient();
-
             HttpResponseMessage respuesta = await cliente.SendAsync(peticion);
 
             //Validar si se actualizo y retorna los datos
