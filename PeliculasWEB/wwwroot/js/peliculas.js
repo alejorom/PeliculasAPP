@@ -13,11 +13,11 @@ function loadDataTable() {
             "datatype": "json"
         },
         "columns":[
-            { "data": "id", "width": "20%" },
-            { "data": "nombre", "width": "20%" },
-            { "data": "descripcion", "width": "20%" },
+            { "data": "id", "width": "5%" },
+            { "data": "nombre", "width": "30%" },
+            { "data": "descripcion", "width": "30%" },
             { "data": "clasificacion", "width": "20%" },
-            { "data": "duracion", "width": "20%" },
+            { "data": "duracion", "width": "5%" },
             {
                 "data": "id",
                 "render": function (data) {
