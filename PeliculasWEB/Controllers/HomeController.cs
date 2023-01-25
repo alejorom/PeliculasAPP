@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using PeliculasWEB.Models;
+using PeliculasWEB.Models.ViewModels;
 using PeliculasWEB.Repository.IRepository;
 using PeliculasWEB.Utilities;
 using System.Diagnostics;
@@ -24,11 +25,27 @@ namespace PeliculasWEB.Controllers
             _peliculaRepo = peliculaRepo;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            IndexVM listapeliculasCategorias = new()
+            {
+                ListaCategorias = (IEnumerable<Categoria>)await _categoriaRepo.GetTodoAsync(Constantes.RutaCategoriasApi),
+                ListaPeliculas = (IEnumerable<Pelicula>)await _peliculaRepo.GetTodoAsync(Constantes.RutaPeliculasApi),
+            };
+            return View(listapeliculasCategorias);
         }
 
+        public async Task<IActionResult> IndexCategoria(int id)
+        {
+            var pelisEnCategoria = await _peliculaRepo.GetPeliculasEnCategoriaAsync(Constantes.RutaPeliculasEnCategoriaApi, id);
+            return View(pelisEnCategoria);
+        }
+
+        public async Task<IActionResult> IndexBusqueda(string nombre)
+        {
+            var pelisEncontradas = await _peliculaRepo.BuscarAsync(Constantes.RutaPeliculasApiBusqueda, nombre);
+            return View(pelisEncontradas);
+        }
         public IActionResult Privacy()
         {
             return View();
