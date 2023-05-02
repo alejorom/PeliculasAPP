@@ -81,7 +81,7 @@ namespace PeliculasAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [AllowAnonymous]
-        [HttpPost]
+        [HttpPost("Registro")]
         [ProducesResponseType(201, Type = typeof(UsuarioAuthDTO))]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
