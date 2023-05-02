@@ -39,6 +39,7 @@ namespace PeliculasAPI.Controllers
         /// <returns></returns>
         [AllowAnonymous]
         [HttpGet]
+        [ResponseCache(Duration = 20)]
         [ProducesResponseType(200, Type = typeof(List<CategoriaDTO>))]
         [ProducesResponseType(400)]
         public IActionResult GetCategorias()
@@ -57,6 +58,7 @@ namespace PeliculasAPI.Controllers
         /// <returns></returns>
         [AllowAnonymous]
         [HttpGet("{categoriaId:int}", Name = "GetCategoria")]
+        [ResponseCache(Duration = 20)]
         [ProducesResponseType(200, Type = typeof(CategoriaDTO))]
         [ProducesResponseType(404)]
         [ProducesDefaultResponseType]
